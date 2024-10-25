@@ -53,9 +53,23 @@ const SingleImage = () => {
 
         const layers = () => {
             const layers = canvas.getObjects().map((obj, index) => {
-                return { type: obj.type, index, details: obj }
+                return {
+                    index,
+                    type: obj.type,
+                    attributes: {
+                        left: obj.left,
+                        top: obj.top,
+                        width: obj.width,
+                        height: obj.height,
+                        scaleX: obj.scaleX,
+                        scaleY: obj.scaleY,
+                        fill: obj.fill,
+                        stroke: obj.stroke,
+                        text: obj.text || null
+                    }
+                }
             })
-            console.log(layers)
+            console.log("Canvas Layers:", layers)
         }
 
         loadImage()
@@ -68,6 +82,7 @@ const SingleImage = () => {
                 fontSize: 20,
             })
             canvas.add(text)
+            layers()
         }
 
         document.getElementById('add-circle').onclick = () => {
@@ -79,6 +94,7 @@ const SingleImage = () => {
                 stroke: 'black',
             })
             canvas.add(circle)
+            layers()
         }
 
         document.getElementById('add-rect').onclick = () => {
@@ -91,6 +107,7 @@ const SingleImage = () => {
                 stroke: 'black',
             })
             canvas.add(rect)
+            layers()
         }
 
         document.getElementById('add-triangle').onclick = () => {
@@ -103,6 +120,7 @@ const SingleImage = () => {
                 stroke: 'black',
             })
             canvas.add(triangle)
+            layers()
         }
 
         document.getElementById('download').onclick = () => {
