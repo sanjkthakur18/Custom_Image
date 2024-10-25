@@ -17,7 +17,7 @@ const SingleImage = () => {
                         Authorization: 'Gtm8Af5dgTo9oHxfz3nb9FaH1znv412kAXSoA1dNQ3WkEhhdUycbmFlR'
                     }
                 })
-                
+        
                 const img = new Image()
                 img.crossOrigin = 'anonymous'
                 img.src = response.data.src.original
@@ -26,9 +26,9 @@ const SingleImage = () => {
                     const aspectRatio = fabricImage.width / fabricImage.height
                     const maxWidth = window.innerWidth * 0.9
                     const maxHeight = window.innerHeight * 0.7
-
+        
                     let imgWidth, imgHeight
-
+        
                     if (aspectRatio >= 1) {
                         imgWidth = maxWidth
                         imgHeight = maxWidth / aspectRatio
@@ -36,14 +36,17 @@ const SingleImage = () => {
                         imgHeight = maxHeight
                         imgWidth = maxHeight * aspectRatio
                     }
-
+        
                     canvas.setWidth(imgWidth)
                     canvas.setHeight(imgHeight)
-
-                    fabricImage.set({ left: 0, top: 0 })
-                    fabricImage.scaleToWidth(imgWidth)
-                    canvas.add(fabricImage)
-                    canvas.renderAll()
+        
+                    canvas.setBackgroundImage(fabricImage, canvas.renderAll.bind(canvas), {
+                        scaleX: imgWidth / fabricImage.width,
+                        scaleY: imgHeight / fabricImage.height,
+                        originX: 'left',
+                        originY: 'top'
+                    })
+        
                     layers()
                 }
             } catch (error) {
