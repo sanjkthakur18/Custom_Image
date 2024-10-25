@@ -34,6 +34,7 @@ Image Editing: Fabric.js for canvas manipulation
 10. Refresh the page or clear local storage to reset the login.
 
 
+
 3. Components Overview
 ----------------------
 1. App.jsx: Main application entry point, handles routing and context provider setup.
@@ -41,4 +42,3 @@ Image Editing: Fabric.js for canvas manipulation
 3. SearchPage.jsx: Main page for image search functionality using Pexels API, displaying search results and suggestions.
 4. SingleImage.jsx: Editor page for selected images, allowing users to add shapes, text, and download edited images.
 5. PhotoContext.jsx: Context provider to handle search results and global data access.
-
